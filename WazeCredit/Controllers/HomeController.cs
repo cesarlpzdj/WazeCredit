@@ -1,21 +1,42 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WazeCredit.Models;
+using WazeCredit.Models.ViewModels;
+using WazeCredit.Service;
 
 namespace WazeCredit.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    public HomeVM HomeVM { get; set; }
+    private readonly IMarketForecaster _marketForecaster;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IMarketForecaster marketForecaster)
     {
-        _logger = logger;
+        HomeVM = new HomeVM();
+        _marketForecaster = marketForecaster;
     }
-
     public IActionResult Index()
     {
-        return View();
+        var currentMarket = _marketForecaster.GetMarketForecast();
+
+        switch (currentMarket.MarketCondition)
+        {
+            case MarketCondition.StableUp:
+                HomeVM.MarketForecast = "The market is stable and trending upwards.";
+                break;
+            case MarketCondition.StableDown:
+                HomeVM.MarketForecast = "The market is stable and trending downwards.";
+                break;
+            case MarketCondition.Volatile:
+                HomeVM.MarketForecast = "The market is volatile, proceed with caution.";
+                break;
+            default:
+                HomeVM.MarketForecast = "Apply for a credit card using our app!";
+                break;
+        }
+
+        return View(HomeVM);
     }
 
     public IActionResult Privacy()
