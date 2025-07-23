@@ -1,0 +1,45 @@
+## Ignore Visual Studio temporary files, build results, and
+## user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+bin/
+obj/
+
+# NuGet packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+!**/packages/build/
+!**/packages/repositories.config
+
+# Visual Studio Code
+.vscode/
+.history/
+
+# Others
+*.log
+*.vspscc
+*.vssscc
+.vs/
+_ReSharper*/
+*.DotSettings.user
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# User-specific files
+*.swp
+*.swo
+
+# IIS
+*.vsconfig
+.idea/
