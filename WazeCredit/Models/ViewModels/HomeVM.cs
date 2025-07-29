@@ -2,6 +2,6 @@
 {
     public class HomeVM
     {
-        public string MarketForecast { get; set; }
+        public string? MarketForecast { get; set; }
     }
 }
